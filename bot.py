@@ -38,7 +38,10 @@ def parse(result_collection, id):
             new_result.append(r)
         elif r['elective'] == True:
             user = users.find({'chat_id':id})
-            if r['name'] in user[0]['elected']:
+            if user[0]['elected']:
+                if r['name'] in user[0]['elected']
+                    new_result.append(r)
+            else:
                 new_result.append(r)
     
     messages = {}
