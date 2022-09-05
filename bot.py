@@ -218,7 +218,7 @@ def notification(context: CallbackContext):
         temp = []
         for i in result:
             if temp['time']==t.strftime('%H:%M'):
-            temp.append(i)
+                temp.append(i)
         message = parse(temp)
         message += f'\n{week}, {weekdays[day]}, {t.strftime("%H:%M")}, {user["group"]}'
         context.bot.send_message(chat_id=user['chat_id'], text=message)
