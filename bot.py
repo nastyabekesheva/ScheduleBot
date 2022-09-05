@@ -182,18 +182,19 @@ def notification(context: CallbackContext):
         context.bot.send_message(chat_id=user['chat_id'], text=message)
 
 
-job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(5,30))
-job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(7,25))
-job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(9,20))
-job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
-job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
-job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
+def main():
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(5,30))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(7,25))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(9,20))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
 
+    dispatcher.add_handler(CommandHandler('start', start_command))
+    dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
 
-dispatcher.add_handler(CommandHandler('start', start_command))
-dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
+    updater.start_polling()
+    updater.idle()
 
-
-
-updater.start_polling()
-updater.idle()
+if __name__ == '__main__':
+    main()
