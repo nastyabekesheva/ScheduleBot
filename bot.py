@@ -247,6 +247,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,50))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
+    dispatcher.add_handler(CommandHandler('select', select_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
     updater.start_polling()
     updater.idle()
