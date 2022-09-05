@@ -31,26 +31,54 @@ week_1_buttons = [[KeyboardButton('Понеділок (т. 1)'), KeyboardButton(
 week_2_buttons = [[KeyboardButton('Понеділок (т. 2)'), KeyboardButton('Вівторок (т. 2)')], [KeyboardButton('Середа (т. 2)'), KeyboardButton('Четвер (т. 2)')], [KeyboardButton('П\'ятниця (т. 2)'), KeyboardButton('Субота (т. 2)')], [KeyboardButton('Вибрати тиждень')]]
 
 def parse(result_collection):
-
+    
     messages = {}
-    for result in result_collection:
-        if result['time'] == '08:30':
-            messages.update({1 : f'Пара №1\n{result["name"]}\n{result["teacher"]}\nПосилання:{result["link"]}\n\n'})
-        elif result['time'] == '10:25':
-            messages.update({2 : f'Пара №2\n{result["name"]}\n{result["teacher"]}\nПосилання:{result["link"]}\n\n'})
-        elif result['time'] == '12:20':
-            messages.update({3 : f'Пара №3\n{result["name"]}\n{result["teacher"]}\nПосилання:{result["link"]}\n\n'})
-        elif result['time'] == '14:15':
-            messages.update({4 : f'Пара №4\n{result["name"]}\n{result["teacher"]}\nПосилання:{result["link"]}\n\n'})
-        elif result['time'] == '16:10':
-            messages.update({5 : f'Пара №5\n{result["name"]}\n{result["teacher"]}\nПосилання:{result["link"]}\n\n'})
-        elif result['time'] == '18:30':
-            messages.update({6 : f'Пара №6\n{result["name"]}\n{result["teacher"]}\nПосилання:{result["link"]}\n\n'})
+    
+    message = ''
+    for r in result_collection:
+        
+        if r['time'] == '08:30':
+            try:
+                messages[1].append(f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+            except KeyError:
+                messages.update({1 : [f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                
+        if r['time'] == '10:25':
+            try:
+                messages[2].append(f'Пара №2\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+            except KeyError:
+                messages.update({2 : [f'Пара №2\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+        if r['time'] == '12:20':
+            try:
+                messages[3].append(f'Пара №3\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+            except KeyError:
+                messages.update({3 : [f'Пара №3\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+        if r['time'] == '14:15':
+            try:
+                messages[4].append(f'Пара №4\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+            except KeyError:
+                messages.update({4 : [f'Пара №4\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+        if r['time'] == '16:10':
+            try:
+                messages[5].append(f'Пара №5\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+            except KeyError:
+                messages.update({5 : [f'Пара №5\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+        if r['time'] == '18:30':
+            try:
+                messages[6].append(f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+            except KeyError:
+                messages.update({6 : [f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+        
+    
     messages = dict(sorted(messages.items()))
-    message = ''.join(messages.values())
+    print(messages)
+    for i in messages:
+        temp = ''.join(messages[i])
+        message += temp
     if message == '':
         message = 'Відпочивай'
     return message
+
 
 def start_command(update: Update, context: CallbackContext):
 
