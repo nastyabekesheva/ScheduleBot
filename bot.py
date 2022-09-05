@@ -90,7 +90,7 @@ def get_elected_subjects(id):
 def start_command(update: Update, context: CallbackContext):
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
     buttons = [[KeyboardButton('ФІ-12')]]
-    users.insert_one({'chat_id':update.effective_chat.id})
+    users.insert_one({'chat_id':update.effective_chat.id, 'elected':[]})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
     
@@ -99,8 +99,9 @@ def select_command(update: Update, context: CallbackContext):
     subjects_names = get_elected_subjects(update.effective_chat.id)
     buttons = []
     for i in range(len(subjects_names)):
-        message += f'{i} - {subjects_names[i]}'
+        message += f'{i} - {subjects_names[i]}\n'
         buttons.append([KeyboardButton(f'{i}')])
+    buttons.append([KeyboardButton('Вибрати тиждень')])
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
         
     
@@ -211,7 +212,7 @@ def message_handler(update: Update, context: CallbackContext):
     subjects = get_elected_subjects(update.effective_chat.id)
     for i in range(len(subjects)):
         if str(i) in update.message.text:
-            users.update_one({'chat_id':update.effective_chat.id}, {'$push':{'elected':subjects}})
+            users.update_one({'chat_id':update.effective_chat.id}, {'$push':{'elected':subjects[i]}})
         
 def notification(context: CallbackContext):
     today = datetime.date.today()
