@@ -14,7 +14,7 @@ from pymongo import MongoClient
 import datetime
 import logging
 
-cluster = MongoClient('mongodb+srv://nastyabekesheva:tkyrpl190@scheduledb.xtrt8vp.mongodb.net/?retryWrites=true&w=majority', ssl_cert_reqs=ssl.CERT_NONE)
+cluster = MongoClient('mongodb+srv://nastyabekesheva:tkyrpl190@scheduledb.xtrt8vp.mongodb.net/?retryWrites=true&w=majority')
 db = cluster['ScheduleDB']
 collection = db['schedule']
 users = db['users']
