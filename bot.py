@@ -30,12 +30,21 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 week_1_buttons = [[KeyboardButton('Понеділок (т. 1)'), KeyboardButton('Вівторок (т. 1)')], [KeyboardButton('Середа (т. 1)'), KeyboardButton('Четвер (т. 1)')], [KeyboardButton('П\'ятниця (т. 1)'), KeyboardButton('Субота (т. 1)')], [KeyboardButton('Вибрати тиждень')]]
 week_2_buttons = [[KeyboardButton('Понеділок (т. 2)'), KeyboardButton('Вівторок (т. 2)')], [KeyboardButton('Середа (т. 2)'), KeyboardButton('Четвер (т. 2)')], [KeyboardButton('П\'ятниця (т. 2)'), KeyboardButton('Субота (т. 2)')], [KeyboardButton('Вибрати тиждень')]]
 
-def parse(result_collection):
+def parse(result_collection, id):
+
+    new_result = []
+    for r in result_collection:
+        if r['elective'] == False:
+            new_result.append(r)
+        elif r['elective'] == True:
+            user = users.find({'chat_id':id})
+            if r['name'] in user['elected']:
+                new_result.append(r)
     
     messages = {}
     
     message = ''
-    for r in result_collection:
+    for r in new_result:
         if r['time'] == '08:30':
             try:
                 messages[1].append(f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
@@ -130,84 +139,84 @@ def message_handler(update: Update, context: CallbackContext):
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Monday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
     if 'Вівторок (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Tuesday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
     if 'Середа (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Wednesday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
     if 'Четвер (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Thursday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
     if 'П\'ятниця (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Friday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
     if 'Субота (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Saturday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
     if 'Понеділок (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Monday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
     if 'Вівторок (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Tuesday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
     if 'Середа (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Wednesday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
     if 'Четвер (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Thursday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
     if 'П\'ятниця (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Friday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
     if 'Субота (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Saturday', 'groups':group})
-        message = parse(result_collection)
+        message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
     subjects = get_elected_subjects(update.effective_chat.id)
     for i in range(len(subjects)):
@@ -235,7 +244,7 @@ def notification(context: CallbackContext):
         for i in result:
             if i['time']==t.strftime('%H:%M'):
                 temp.append(i)
-        message = parse(temp)
+        message = parse(temp, update.effective_chat.id)
         context.bot.send_message(chat_id=user['chat_id'], text=message)
 
 def main():
