@@ -200,7 +200,8 @@ def notification(context: CallbackContext):
     else:
         week = '2'
     day = today.weekday()
-    t = datetime.datetime.now().time()
+    t = datetime.datetime.now()+ datetime.timedelta(hours=3)
+    t = t.time()
     j = t.strftime('%H:%M')
     mes = f'{j}, {week}, {weekdays[day]}'
     
@@ -208,7 +209,6 @@ def notification(context: CallbackContext):
     for user in us:
         result = collection.find({'week':week, 'day':weekdays[day], 'time':t.strftime('%H:%M'), 'groups':user['group']})
         message = parse(result)
-        g =
         message += f'\n{week}, {weekdays[day]}, {t.strftime("%H:%M")}, {user["group"]}'
         context.bot.send_message(chat_id=user['chat_id'], text=message)
 
@@ -219,7 +219,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(12,25))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(12,33))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
