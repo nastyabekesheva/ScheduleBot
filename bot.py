@@ -172,7 +172,7 @@ def notification(context: CallbackContext):
     else:
         week = '2'
     day = today.weekday()
-    time = today.strftime('%H:%M')
+    time = datetime.datetime.now().strftime('%H:%M')
     
     us = users.find()
     print(weekdays[day])
@@ -188,7 +188,6 @@ job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.tim
 job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
 job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
 job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-
 
 
 dispatcher.add_handler(CommandHandler('start', start_command))
