@@ -23,7 +23,7 @@ users = db['users']
 start_date = datetime.date(2022, 9, 5)
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-updater = Updater(token='5651742670:AAGCoiS_uwqAFJ5BZFmb7kkbs7DhrwFv6W0', use_context=True)
+updater = Updater(token='5651742670:AAE3IU3a99mn92IM_6Xz-hMPIfLSSgRI1Fc', use_context=True)
 dispatcher = updater.dispatcher
 j = updater.job_queue
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
