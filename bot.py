@@ -192,8 +192,8 @@ def main():
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
-    #updater.start_polling()
-    updater.start_webhook(listen="0.0.0.0",
+    updater.start_polling()
+    #updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
                       url_path='5651742670:AAE3IU3a99mn92IM_6Xz-hMPIfLSSgRI1Fc'
                       )
