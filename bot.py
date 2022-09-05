@@ -35,6 +35,7 @@ def parse(result_collection):
     messages = {}
     
     message = ''
+    print(result_collection)
     for r in result_collection:
         
         if r['time'] == '08:30':
@@ -68,9 +69,15 @@ def parse(result_collection):
                 messages[6].append(f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
                 messages.update({6 : [f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+        if r['time'] == '15:44':
+            try:
+                messages[6].append(f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+            except KeyError:
+                messages.update({6 : [f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
         
     
     messages = dict(sorted(messages.items()))
+    print(messages)
     for i in messages:
         temp = ''.join(messages[i])
         message += temp
@@ -207,11 +214,12 @@ def notification(context: CallbackContext):
     
     us = users.find()
     for user in us:
-        result = collection.find({'week':week, 'day':weekdays[day], 'time':t.strftime('%H:%M'), 'groups':user['group']})
-        message = parse(result)
+        result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
+        temp = []
         for i in result:
-            print(i)
-        print(t.strftime('%H:%M') == '15:44')
+            if temp['time']==t.strftime('%H:%M'):
+            temp.append(i)
+        message = parse(temp)
         message += f'\n{week}, {weekdays[day]}, {t.strftime("%H:%M")}, {user["group"]}'
         context.bot.send_message(chat_id=user['chat_id'], text=message)
 
@@ -222,7 +230,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(12,44))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,42))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
@@ -231,3 +239,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#'time':t.strftime('%H:%M'),
