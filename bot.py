@@ -37,7 +37,6 @@ def parse(result_collection):
     message = ''
     print(result_collection)
     for r in result_collection:
-        print('ok')
         if r['time'] == '08:30':
             try:
                 messages[1].append(f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
@@ -69,13 +68,7 @@ def parse(result_collection):
                 messages[6].append(f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
                 messages.update({6 : [f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
-        if r['time'] == '18:50':
-            print('okk')
-            try:
-                messages[7].append(f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
-            except KeyError:
-                messages.update({7 : [f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
-            print('okk')
+
     
     messages = dict(sorted(messages.items()))
     print(messages)
@@ -86,6 +79,16 @@ def parse(result_collection):
         message = 'Відпочивай'
     return message
 
+def get_elected_subjects(id):
+    user = users.find({'chat_id':id})
+    group = user[0]['group']
+    subjects = collection.find({'groups':group, 'elective':True})
+    subjects_names = []
+    for subject in subjects:
+        subjects_names.append(subject['name'])
+    subjects_names = set(subjects_names)
+    
+    return subjects_names
 
 def start_command(update: Update, context: CallbackContext):
 
@@ -93,6 +96,17 @@ def start_command(update: Update, context: CallbackContext):
     buttons = [[KeyboardButton('ФІ-12')]]
     users.insert_one({'chat_id':update.effective_chat.id})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
+    
+    
+def select_command(update: Update, context: CallbackContext):
+    message = 'Вибери предмет за номером:\n'
+    subjects_names = get_elected_subjects(update.effective_chat.id)
+    buttons = []
+    for i in len(subjects_names):
+        message += f'{i} - {subjects_names[i]}'
+        buttons.append([KeyboardButton(f'{i}')])
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
+        
     
 def message_handler(update: Update, context: CallbackContext):
     if 'ФІ-12' in update.message.text:
@@ -198,6 +212,10 @@ def message_handler(update: Update, context: CallbackContext):
         result_collection = collection.find({'week':'2', 'day':'Saturday', 'groups':group})
         message = parse(result_collection)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
+    subjects = get_elected_subjects(update.effective_chat.id)
+    for i in len(subjects):
+        if i in update.message.text:
+            users.update_one({'chat_id':update.effective_chat.id}, {'$push':{'elected':subjects}})
         
 def notification(context: CallbackContext):
     today = datetime.date.today()
@@ -221,8 +239,6 @@ def notification(context: CallbackContext):
             if i['time']==t.strftime('%H:%M'):
                 temp.append(i)
         message = parse(temp)
-        message += f'\n{week}, {weekdays[day]}, {t.strftime("%H:%M")}, {user["group"]}'
-        print("sending")
         context.bot.send_message(chat_id=user['chat_id'], text=message)
 
 def main():
