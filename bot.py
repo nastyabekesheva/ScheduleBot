@@ -218,7 +218,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(12,05))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(12,10))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
