@@ -37,7 +37,7 @@ def parse(result_collection):
     message = ''
     print(result_collection)
     for r in result_collection:
-        
+        print('ok')
         if r['time'] == '08:30':
             try:
                 messages[1].append(f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
@@ -70,11 +70,12 @@ def parse(result_collection):
             except KeyError:
                 messages.update({6 : [f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
         if r['time'] == '15:44':
+            print('okk')
             try:
                 messages[6].append(f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
                 messages.update({6 : [f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
-        
+            print('okk')
     
     messages = dict(sorted(messages.items()))
     print(messages)
@@ -210,7 +211,7 @@ def notification(context: CallbackContext):
     t = datetime.datetime.now()+ datetime.timedelta(hours=3)
     t = t.time()
     j = t.strftime('%H:%M')
-    mes = f'{j}, {week}, {weekdays[day]}'
+
     
     us = users.find()
     for user in us:
@@ -230,7 +231,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,44))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,36))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
