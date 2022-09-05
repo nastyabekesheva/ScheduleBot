@@ -31,6 +31,7 @@ week_1_buttons = [[KeyboardButton('Понеділок (т. 1)'), KeyboardButton(
 week_2_buttons = [[KeyboardButton('Понеділок (т. 2)'), KeyboardButton('Вівторок (т. 2)')], [KeyboardButton('Середа (т. 2)'), KeyboardButton('Четвер (т. 2)')], [KeyboardButton('П\'ятниця (т. 2)'), KeyboardButton('Субота (т. 2)')], [KeyboardButton('Вибрати тиждень')]]
 
 def parse(result_collection):
+
     messages = {}
     for result in result_collection:
         if result['time'] == '08:30':
@@ -52,6 +53,7 @@ def parse(result_collection):
     return message
 
 def start_command(update: Update, context: CallbackContext):
+
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
     buttons = [[KeyboardButton('ФІ-12')]]
     users.insert_one({'chat_id':update.effective_chat.id})
@@ -190,7 +192,6 @@ def main():
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
-
     #updater.start_polling()
     updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
