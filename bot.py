@@ -69,12 +69,12 @@ def parse(result_collection):
                 messages[6].append(f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
                 messages.update({6 : [f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
-        if r['time'] == '15:44':
+        if r['time'] == '18:50':
             print('okk')
             try:
-                messages[6].append(f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[7].append(f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({6 : [f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({7 : [f'Пара №c\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
             print('okk')
     
     messages = dict(sorted(messages.items()))
@@ -232,7 +232,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,45))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,50))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
