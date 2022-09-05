@@ -76,7 +76,7 @@ def message_handler(update: Update, context: CallbackContext):
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     if 'Вибрати групу' in update.message.text:
-        message = 'Вибери тиждень'
+        message = 'Вибери групу'
         buttons = [[KeyboardButton('ФІ-12')]]
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     if 'Понеділок (т. 1)' in update.message.text:
@@ -173,12 +173,11 @@ def notification(context: CallbackContext):
     else:
         week = '2'
     day = today.weekday()
-    time = datetime.datetime.now().strftime('%H:%M')
+    t = datetime.datetime.now().time()
     
     us = users.find()
-    print(weekdays[day])
     for user in us:
-        result = collection.find({'week':str(week), 'day':weekdays[day], 'time':str(time), 'group':user['group']})
+        result = collection.find({'week':week, 'day':weekdays[day], 'time':t.strftime('%H:%M'), 'groups':user['group']})
         message = parse(result)
         context.bot.send_message(chat_id=user['chat_id'], text=message)
 
