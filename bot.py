@@ -98,7 +98,7 @@ def select_command(update: Update, context: CallbackContext):
     message = 'Вибери предмет за номером:\n'
     subjects_names = get_elected_subjects(update.effective_chat.id)
     buttons = []
-    for i in len(subjects_names):
+    for i in range(len(subjects_names)):
         message += f'{i} - {subjects_names[i]}'
         buttons.append([KeyboardButton(f'{i}')])
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
