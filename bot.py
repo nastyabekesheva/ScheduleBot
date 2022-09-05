@@ -34,6 +34,7 @@ def parse(result_collection, id):
 
     new_result = []
     for r in result_collection:
+        print(r)
         if r['elective'] == False:
             new_result.append(r)
         elif r['elective'] == True:
@@ -115,7 +116,10 @@ def select_command(update: Update, context: CallbackContext):
         buttons.append([KeyboardButton(f'{i}')])
     buttons.append([KeyboardButton('Вибрати тиждень')])
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
-        
+    
+def unselect_command(update: Update, context: CallbackContext):
+    users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[]}})
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Вибіркові предмети видалено')
     
 def message_handler(update: Update, context: CallbackContext):
     if 'ФІ-12' in update.message.text:
