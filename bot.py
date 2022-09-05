@@ -211,7 +211,7 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
     subjects = get_elected_subjects(update.effective_chat.id)
     for i in range(len(subjects)):
-        if str(i) in update.message.text:
+        if str(i) == update.message.text:
             users.update_one({'chat_id':update.effective_chat.id}, {'$push':{'elected':subjects[i]}})
         
 def notification(context: CallbackContext):
