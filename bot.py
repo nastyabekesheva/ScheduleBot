@@ -35,7 +35,6 @@ def parse(result_collection):
     messages = {}
     
     message = ''
-    print(result_collection)
     for r in result_collection:
         if r['time'] == '08:30':
             try:
@@ -68,10 +67,8 @@ def parse(result_collection):
                 messages[6].append(f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
                 messages.update({6 : [f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
-
     
     messages = dict(sorted(messages.items()))
-    print(messages)
     for i in messages:
         temp = ''.join(messages[i])
         message += temp
@@ -86,12 +83,11 @@ def get_elected_subjects(id):
     subjects_names = []
     for subject in subjects:
         subjects_names.append(subject['name'])
-    subjects_names = sorted(list(set(names)))
+    subjects_names = sorted(list(set(subjects_names)))
     
     return subjects_names
 
 def start_command(update: Update, context: CallbackContext):
-
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
     buttons = [[KeyboardButton('ФІ-12')]]
     users.insert_one({'chat_id':update.effective_chat.id})
