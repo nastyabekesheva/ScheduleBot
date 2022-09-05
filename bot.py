@@ -5,15 +5,11 @@ def install(package):
     else:
         pip._internal.main(['install', package])
 
-#install('python-telegram-bot')
-#install('telegram-menu')
-#install('pymongo')
 
 from telegram.ext import *
 from telegram import *
 import pymongo
 from pymongo import MongoClient
-#from datetime import date
 
 import datetime
 import logging

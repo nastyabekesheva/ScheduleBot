@@ -8,7 +8,6 @@
 
 /* Begin PBXFileReference section */
 		066CC2DE28C32A1E001423D1 /* bot.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = bot.py; sourceTree = "<group>"; };
-		066CC2E428C538F0001423D1 /* dictionary.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = dictionary.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -16,7 +15,6 @@
 			isa = PBXGroup;
 			children = (
 				066CC2DE28C32A1E001423D1 /* bot.py */,
-				066CC2E428C538F0001423D1 /* dictionary.py */,
 			);
 			sourceTree = "<group>";
 		};
