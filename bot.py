@@ -217,7 +217,7 @@ def notification(context: CallbackContext):
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
         temp = []
         for i in result:
-            if temp['time']==t.strftime('%H:%M'):
+            if i['time']==t.strftime('%H:%M'):
                 temp.append(i)
         message = parse(temp)
         message += f'\n{week}, {weekdays[day]}, {t.strftime("%H:%M")}, {user["group"]}'
@@ -230,7 +230,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,42))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,44))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
