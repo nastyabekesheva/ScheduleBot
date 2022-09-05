@@ -19,7 +19,6 @@ db = cluster['ScheduleDB']
 collection = db['schedule']
 users = db['users']
 
-
 start_date = datetime.date(2022, 9, 5)
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -180,7 +179,6 @@ def notification(context: CallbackContext):
         result = collection.find({'week':str(week), 'day':weekdays[day], 'time':str(time), 'group':user['group']})
         message = parse(result)
         context.bot.send_message(chat_id=user['chat_id'], text=message)
-
 
 def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(5,30))
