@@ -34,7 +34,6 @@ def parse(result_collection, id):
 
     new_result = []
     for r in result_collection:
-        print(r)
         if r['elective'] == False:
             new_result.append(r)
         elif r['elective'] == True:
@@ -265,6 +264,7 @@ def main():
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(CommandHandler('select', select_command))
+    dispatcher.add_handler(CommandHandler('unselect', select_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
     updater.start_polling()
     updater.idle()
