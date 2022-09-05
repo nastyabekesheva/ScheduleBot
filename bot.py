@@ -86,7 +86,7 @@ def get_elected_subjects(id):
     subjects_names = []
     for subject in subjects:
         subjects_names.append(subject['name'])
-    subjects_names = set(subjects_names)
+    subjects_names = sorted(list(set(names)))
     
     return subjects_names
 
