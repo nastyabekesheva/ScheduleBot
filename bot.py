@@ -378,6 +378,7 @@ def main():
     dispatcher.add_handler(CommandHandler('unselect', unselect_command))
     dispatcher.add_handler(CommandHandler('suggest', suggest_command))
     dispatcher.add_handler(CommandHandler('end', end_command))
+    dispatcher.add_handler(CommandHandler('addtochannel', addtochannel_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
     updater.start_polling()
     updater.idle()
