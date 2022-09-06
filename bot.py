@@ -163,7 +163,7 @@ def message_handler(update: Update, context: CallbackContext):
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Monday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
     if 'Вівторок (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
