@@ -60,41 +60,58 @@ def parse(result_collection, id):
     for r in new_result:
         if r['time'] == '08:30':
             try:
-                messages[1].append(f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
+                messages[1].append(f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f4dc {r["type"]} \n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({1 : [f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+                messages.update({1 : [f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
             for i in range(len(messages[1])):
-                print(1)
                 if 'Кохтич' in messages[1][i]:
-                    print(2)
                     messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
-                print(messages[1])
                 
         if r['time'] == '10:25':
             try:
-                messages[2].append(f'2\uFE0F\u20E3 пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
+                messages[2].append(f'2\uFE0F\u20E3 пара (10:25)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({2 : [f'2\uFE0F\u20E3 пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+                messages.update({2 : [f'2\uFE0F\u20E3 пара (10:25)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+            for i in range(len(messages[1])):
+                if 'Кохтич' in messages[1][i]:
+                    messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
+                    
         if r['time'] == '12:20':
             try:
-                messages[3].append(f'3\uFE0F\u20E3 пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
+                messages[3].append(f'3\uFE0F\u20E3 пара (12:20)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({3 : [f'3\uFE0F\u20E3 пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+                messages.update({3 : [f'3\uFE0F\u20E3 пара (12:20)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+            for i in range(len(messages[1])):
+                if 'Кохтич' in messages[1][i]:
+                    messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
+                    
         if r['time'] == '14:15':
             try:
-                messages[4].append(f'4\uFE0F\u20E3 пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
+                messages[4].append(f'4\uFE0F\u20E3 пара (14:15)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({4 : [f'4\uFE0F\u20E3 пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+                messages.update({4 : [f'4\uFE0F\u20E3 пара (14:15)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+            for i in range(len(messages[1])):
+                if 'Кохтич' in messages[1][i]:
+                    messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
+                    
         if r['time'] == '16:10':
             try:
-                messages[5].append(f'5\uFE0F\u20E3 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
+                messages[5].append(f'5\uFE0F\u20E3 пара (16:10)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({5 : [f'5\uFE0F\u20E3 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+                messages.update({5 : [f'5\uFE0F\u20E3 пара (16:10)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+            for i in range(len(messages[1])):
+                if 'Кохтич' in messages[1][i]:
+                    messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
+                    
         if r['time'] == '18:30':
             try:
-                messages[6].append(f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
+                messages[6].append(f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({6 : [f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+                messages.update({6 : [f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+            for i in range(len(messages[1])):
+                if 'Кохтич' in messages[1][i]:
+                    messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
+                    
     
     messages = dict(sorted(messages.items()))
     for i in messages:
