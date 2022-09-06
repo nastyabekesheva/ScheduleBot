@@ -342,7 +342,7 @@ def main():
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(4,59))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
-    dispatcher.add_handler(CommandHandler('start', start_command))
+    dispatcher.add_handler(CommandHandler('restart', restart_command))
     dispatcher.add_handler(CommandHandler('select', select_command))
     dispatcher.add_handler(CommandHandler('unselect', unselect_command))
     dispatcher.add_handler(CommandHandler('suggest', suggest_command))
