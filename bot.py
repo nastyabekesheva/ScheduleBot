@@ -186,7 +186,7 @@ def message_handler(update: Update, context: CallbackContext):
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
         users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-12'}})
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, hide_keyboard=True))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, single_use=True))
     if 'Тиждень №1' in update.message.text:
         message = 'Вибери день'
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
