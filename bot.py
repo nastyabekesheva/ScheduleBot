@@ -207,84 +207,84 @@ def message_handler(update: Update, context: CallbackContext):
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Monday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Вівторок (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Tuesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Середа (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Wednesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Четвер (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Thursday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'П\'ятниця (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Friday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Субота (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Saturday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Понеділок (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Monday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Вівторок (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Tuesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Середа (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Wednesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Четвер (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Thursday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'П\'ятниця (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Friday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Субота (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Saturday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     subjects = get_elected_subjects(update.effective_chat.id)
     
     for i in range(len(subjects)):
