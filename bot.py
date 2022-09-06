@@ -346,7 +346,7 @@ def c(context: CallbackContext):
     
     us = users.find()
     for user in us:
-        if user['group'] == 'test'
+        if user['group'] == 'test':
             collection.find({'week':'1',  'groups':'test'})
             message = parse(temp, user['chat_id'])
             context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
