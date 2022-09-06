@@ -135,7 +135,7 @@ def get_elected_subjects(id):
 def start_command(update: Update, context: CallbackContext):
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
     buttons = [[KeyboardButton('ФІ-12')]]
-    users.insert_one({'chat_id':update.effective_chat.id, 'elected':[], 'group':''})
+    users.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'elected':[], 'group':''})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
 
 def restart_command(update: Update, context: CallbackContext):
