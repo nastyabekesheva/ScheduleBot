@@ -53,7 +53,7 @@ def parse(result_collection, id):
             try:
                 messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({1 : [f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({1 : [f'\uE21C пара (08:30)\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
                 
         if r['time'] == '10:25':
             try:
