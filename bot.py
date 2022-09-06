@@ -163,7 +163,7 @@ def message_handler(update: Update, context: CallbackContext):
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Monday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
     if 'Вівторок (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
@@ -271,7 +271,26 @@ def notification(context: CallbackContext):
             if i['time']==t.strftime('%H:%M'):
                 temp.append(i)
         message = parse(temp, user['chat_id'])
-        context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
+        if message != 'Відпочивай':
+            context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
+        
+def morning_notification(context: CallbackContext):
+    today = datetime.date.today()
+    delta = (today - start_date).days
+    message = '{today} - День {delta+1}'
+    week = '0'
+    if int(delta / 7) % 2 == 0:
+        week = '1'
+    else:
+        week = '2'
+    day = today.weekday()
+    us = users.find()
+    for user in us:
+        result = collection.find({'week':week, 'day':weekdays[day],  'groups':user[0]['group']})
+        message = parse(temp, user['chat_id'])
+        if message != 'Відпочивай':
+            context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
+    
 
 def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(5,30))
@@ -281,6 +300,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,50))
+    job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(9,02))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(CommandHandler('select', select_command))
