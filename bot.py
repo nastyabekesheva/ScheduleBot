@@ -178,6 +178,10 @@ def unselect_command(update: Update, context: CallbackContext):
 def suggest_command(update: Update, context: CallbackContext):
     suggestions.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'message':update.message.text})
     context.bot.send_message(chat_id=update.effective_chat.id, text='Відгук відправлено')
+    
+def addtochannel_command(update: Update, context: CallbackContext):
+    message = 'Для того щоб додати бота до каналу напиши мені повідомлення у виглядіЖ\n \'Додати до каналу "тег або id каналу" "номер группу"\' без лапок(")'
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Відгук відправлено')
         
     
     
@@ -292,8 +296,16 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     subjects = get_elected_subjects(update.effective_chat.id)
     
-    if 'start channel' in update.message.text:
-        start_command(Update, CallbackContext)
+    if 'Додати до каналу' in update.message.text:
+        message = update.message.text.split()
+        try:
+            id = message[3]
+            group = message[4]
+            users.insert_one({'chat_id':id, 'group':group})
+            context.bot.send_message(chat_id=update.effective_chat.id, text='Успіх!')
+        except KeyError:
+            context.bot.send_message(chat_id=update.effective_chat.id, text='Невірний формат повідомлення', parse_mode=ParseMode.HTML)
+        
     
     for i in range(len(subjects)):
         if str(i) == update.message.text:
@@ -328,7 +340,6 @@ def notification(context: CallbackContext):
         message = parse(temp, user['chat_id'])
         if message != 'Відпочивай':
             context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
-    context.bot.send_message(chat_id='@test_channel83', text='bot')
         
 def morning_notification(context: CallbackContext):
     today = datetime.date.today()
@@ -356,7 +367,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,5))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,25))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,59))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,30))
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(4,59))
     
     
