@@ -31,6 +31,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 week_1_buttons = [[KeyboardButton('Понеділок (т. 1)'), KeyboardButton('Вівторок (т. 1)')], [KeyboardButton('Середа (т. 1)'), KeyboardButton('Четвер (т. 1)')], [KeyboardButton('П\'ятниця (т. 1)'), KeyboardButton('Субота (т. 1)')], [KeyboardButton('Вибрати тиждень')]]
 week_2_buttons = [[KeyboardButton('Понеділок (т. 2)'), KeyboardButton('Вівторок (т. 2)')], [KeyboardButton('Середа (т. 2)'), KeyboardButton('Четвер (т. 2)')], [KeyboardButton('П\'ятниця (т. 2)'), KeyboardButton('Субота (т. 2)')], [KeyboardButton('Вибрати тиждень')]]
 
+def bold(
+    text,
+    trans=str.maketrans(
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+        "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵",
+    ),
+):
+    return text.translate(trans)
+
 def parse(result_collection, id):
 
     new_result = []
@@ -289,7 +298,7 @@ def morning_notification(context: CallbackContext):
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
         message = parse(result, user['chat_id'])
         if message != 'Відпочивай':
-            context.bot.send_message(chat_id=user['chat_id'], text=start_message+message, parse_mode=ParseMode.HTML)
+            context.bot.send_message(chat_id=user['chat_id'], text=bold(start_message)+message, parse_mode=ParseMode.HTML)
     
 
 def main():
