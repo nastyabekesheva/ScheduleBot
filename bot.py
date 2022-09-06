@@ -181,7 +181,7 @@ def suggest_command(update: Update, context: CallbackContext):
     
 def addtochannel_command(update: Update, context: CallbackContext):
     message = 'Для того щоб додати бота до каналу напиши мені повідомлення у виглядіЖ\n \'Додати до каналу "тег або id каналу" "номер группу"\' без лапок(")'
-    context.bot.send_message(chat_id=update.effective_chat.id, text='Відгук відправлено')
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
         
     
     
@@ -367,7 +367,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,5))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,25))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,30))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,35))
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(4,59))
     
     
