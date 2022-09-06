@@ -51,9 +51,9 @@ def parse(result_collection, id):
     for r in new_result:
         if r['time'] == '08:30':
             try:
-                messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:<a href={r["link"]}>тут</a>\n\n')
+                messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({1 : [f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:<a href={r["link"]}>тут</a>\n\n']})
+                messages.update({1 : [f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
                 
         if r['time'] == '10:25':
             try:
@@ -163,7 +163,7 @@ def message_handler(update: Update, context: CallbackContext):
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Monday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
     if 'Вівторок (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
