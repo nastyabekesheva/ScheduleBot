@@ -137,6 +137,10 @@ def start_command(update: Update, context: CallbackContext):
     buttons = [[KeyboardButton('ФІ-12')]]
     users.insert_one({'chat_id':update.effective_chat.id, 'elected':[], 'group':''})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
+
+def restart_command(update: Update, context: CallbackContext):
+    buttons = [[KeyboardButton('ФІ-12')]]
+    users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[], 'group':''}})
     
     
 def select_command(update: Update, context: CallbackContext):
@@ -167,6 +171,7 @@ def unselect_command(update: Update, context: CallbackContext):
 def suggest_command(update: Update, context: CallbackContext):
     suggestions.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'message':update.message.text})
     context.bot.send_message(chat_id=update.effective_chat.id, text='Відгук відправлено')
+        
     
     
 def message_handler(update: Update, context: CallbackContext):
@@ -274,12 +279,15 @@ def message_handler(update: Update, context: CallbackContext):
         message = parse(result_collection, update.effective_chat.id)
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
     subjects = get_elected_subjects(update.effective_chat.id)
+    
     for i in range(len(subjects)):
         if str(i) == update.message.text:
+        
             if subjects[i] not in users.find({'chat_id':update.effective_chat.id})[0]['elected']:
                 users.update_one({'chat_id':update.effective_chat.id}, {'$push':{'elected':subjects[i]}})
             else:
                 users.update_one({'chat_id':update.effective_chat.id}, {'$pull':{'elected':subjects[i]}})
+            
         
 def notification(context: CallbackContext):
     today = datetime.date.today()
@@ -290,7 +298,7 @@ def notification(context: CallbackContext):
     else:
         week = '2'
     day = today.weekday()
-    t = datetime.datetime.now()+ datetime.timedelta(hours=3)
+    t = datetime.datetime.now()+ datetime.timedelta(hours=3,minutes=5)
     t = t.time()
     j = t.strftime('%H:%M')
 
@@ -325,15 +333,15 @@ def morning_notification(context: CallbackContext):
     
 
 def main():
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(5,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(7,25))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(9,20))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,15))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,50))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(5,25))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(7,20))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(9,15))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,10))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,5))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,25))
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(4,59))
 
+    dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(CommandHandler('select', select_command))
     dispatcher.add_handler(CommandHandler('unselect', unselect_command))
@@ -345,4 +353,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-#'time':t.strftime('%H:%M'),
