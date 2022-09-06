@@ -51,35 +51,35 @@ def parse(result_collection, id):
     for r in new_result:
         if r['time'] == '08:30':
             try:
-                messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:<a href={r["link"]}>тут</a>\n\n')
             except KeyError:
-                messages.update({1 : [f'\uE21C пара (08:30)\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({1 : [f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:<a href={r["link"]}>тут</a>\n\n']})
                 
         if r['time'] == '10:25':
             try:
-                messages[2].append(f'Пара №2\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[2].append(f'\uE21D пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({2 : [f'Пара №2\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({2 : [f'\uE21D пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
         if r['time'] == '12:20':
             try:
-                messages[3].append(f'Пара №3\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[3].append(f'\uE21E пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({3 : [f'Пара №3\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({3 : [f'\uE21E пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
         if r['time'] == '14:15':
             try:
-                messages[4].append(f'Пара №4\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[4].append(f'\uE21F пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({4 : [f'Пара №4\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({4 : [f'\uE21F пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
         if r['time'] == '16:10':
             try:
-                messages[5].append(f'Пара №5\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[5].append(f'\uE220 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({5 : [f'Пара №5\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({5 : [f'\uE220 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
         if r['time'] == '18:30':
             try:
-                messages[6].append(f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[6].append(f'\uE221 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
-                messages.update({6 : [f'Пара №6\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({6 : [f'\uE221 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
     
     messages = dict(sorted(messages.items()))
     for i in messages:
