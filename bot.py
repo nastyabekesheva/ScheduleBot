@@ -51,35 +51,35 @@ def parse(result_collection, id):
     for r in new_result:
         if r['time'] == '08:30':
             try:
-                messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:<a href="{r["link"]}">тут</a>\n\n')
+                messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({1 : [f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:<a href="{r["link"]}">тут</a>\n\n']})
+                messages.update({1 : [f'\uE21C пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
                 
         if r['time'] == '10:25':
             try:
-                messages[2].append(f'\uE21D пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[2].append(f'\uE21D пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({2 : [f'\uE21D пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({2 : [f'\uE21D пара (10:25)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
         if r['time'] == '12:20':
             try:
-                messages[3].append(f'\uE21E пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[3].append(f'\uE21E пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({3 : [f'\uE21E пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({3 : [f'\uE21E пара (12:20)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
         if r['time'] == '14:15':
             try:
-                messages[4].append(f'\uE21F пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[4].append(f'\uE21F пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({4 : [f'\uE21F пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({4 : [f'\uE21F пара (14:15)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
         if r['time'] == '16:10':
             try:
-                messages[5].append(f'\uE220 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[5].append(f'\uE220 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({5 : [f'\uE220 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({5 : [f'\uE220 пара (16:10)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
         if r['time'] == '18:30':
             try:
-                messages[6].append(f'\uE221 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[6].append(f'\uE221 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({6 : [f'\uE221 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання:{r["link"]}\n\n']})
+                messages.update({6 : [f'\uE221 пара (18:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
     
     messages = dict(sorted(messages.items()))
     for i in messages:
@@ -163,84 +163,84 @@ def message_handler(update: Update, context: CallbackContext):
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Monday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     if 'Вівторок (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Tuesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
     if 'Середа (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Wednesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
     if 'Четвер (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Thursday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
     if 'П\'ятниця (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Friday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
     if 'Субота (т. 1)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'1', 'day':'Saturday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_1_buttons), parse_mode=ParseMode.HTML)
     if 'Понеділок (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Monday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
     if 'Вівторок (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Tuesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
     if 'Середа (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Wednesday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
     if 'Четвер (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Thursday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
     if 'П\'ятниця (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Friday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
     if 'Субота (т. 2)' in update.message.text:
 
         user = users.find({'chat_id':update.effective_chat.id})
         group = user[0]['group']
         result_collection = collection.find({'week':'2', 'day':'Saturday', 'groups':group})
         message = parse(result_collection, update.effective_chat.id)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons))
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(week_2_buttons), parse_mode=ParseMode.HTML)
     subjects = get_elected_subjects(update.effective_chat.id)
     for i in range(len(subjects)):
         if str(i) == update.message.text:
@@ -271,7 +271,7 @@ def notification(context: CallbackContext):
             if i['time']==t.strftime('%H:%M'):
                 temp.append(i)
         message = parse(temp, user['chat_id'])
-        context.bot.send_message(chat_id=user['chat_id'], text=message)
+        context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
 
 def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(5,30))
