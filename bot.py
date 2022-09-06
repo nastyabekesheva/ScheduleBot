@@ -112,14 +112,14 @@ def parse(result_collection, id):
                 if 'Кохтич' in messages[6][i]:
                     messages[6][i] = messages[6][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
                     
-        if r['time'] == '19:52':
+        if r['time'] == '19:59':
             try:
-                messages[6].append(f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
+                messages[7].append(f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
-                messages.update({6 : [f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
-            for i in range(len(messages[6])):
-                if 'Кохтич' in messages[6][i]:
-                    messages[6][i] = messages[6][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
+                messages.update({7 : [f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
+            for i in range(len(messages[7])):
+                if 'Кохтич' in messages[7][i]:
+                    messages[7][i] = messages[7][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
                     
     
     messages = dict(sorted(messages.items()))
@@ -373,6 +373,7 @@ def morning_notification(context: CallbackContext):
     us = users.find()
     for user in us:
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
+        print(result)
         message = parse(result, user['chat_id'])
         if message != 'Відпочивай':
             context.bot.send_message(chat_id=user['chat_id'], text=bold(start_message)+message, parse_mode=ParseMode.HTML)
@@ -386,7 +387,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,5))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,25))
-    job_daily = j.run_daily(c, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,52))
+    job_daily = j.run_daily(c, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,59))
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(4,59))
     
     
