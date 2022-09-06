@@ -134,7 +134,7 @@ def get_elected_subjects(id):
 
 def start_command(update: Update, context: CallbackContext):
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
-    buttons = [[KeyboardButton('ФІ-12')]]
+    buttons = [[KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')]]
     users.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'elected':[], 'group':''})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
 
@@ -186,6 +186,11 @@ def message_handler(update: Update, context: CallbackContext):
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
         users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-12'}})
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
+    if 'ФІ-03' in update.message.text:
+        message = 'Вибери тиждень'
+        buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
+        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-03'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Тиждень №1' in update.message.text:
         message = 'Вибери день'
