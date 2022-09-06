@@ -64,7 +64,9 @@ def parse(result_collection, id):
             except KeyError:
                 messages.update({1 : [f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
             for mes in messages[1]:
+                print(1)
                 if 'Кохтич' in mes:
+                    print(2)
                     mes = mes.replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
                 
         if r['time'] == '10:25':
