@@ -250,7 +250,7 @@ def notification(context: CallbackContext):
         for i in result:
             if i['time']==t.strftime('%H:%M'):
                 temp.append(i)
-        message = parse(temp, update.effective_chat.id)
+        message = parse(temp, user['chat_id'])
         context.bot.send_message(chat_id=user['chat_id'], text=message)
 
 def main():
