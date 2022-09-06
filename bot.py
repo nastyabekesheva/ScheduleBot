@@ -285,6 +285,7 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(CommandHandler('select', select_command))
     dispatcher.add_handler(CommandHandler('unselect', unselect_command))
+    dispatcher.add_handler(CommandHandler('suggest', unselect_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
     updater.start_polling()
     updater.idle()
