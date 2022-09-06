@@ -287,7 +287,7 @@ def morning_notification(context: CallbackContext):
     us = users.find()
     for user in us:
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
-        message = parse(temp, user['chat_id'])
+        message = parse(result, user['chat_id'])
         if message != 'Відпочивай':
             context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
     
@@ -300,7 +300,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,30))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,50))
-    job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(9,35))
+    job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(9,37))
 
     dispatcher.add_handler(CommandHandler('start', start_command))
     dispatcher.add_handler(CommandHandler('select', select_command))
