@@ -139,8 +139,10 @@ def start_command(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
 
 def restart_command(update: Update, context: CallbackContext):
+    message = 'Вибери групу!'
     buttons = [[KeyboardButton('ФІ-12')]]
     users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[], 'group':''}})
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
     
 def select_command(update: Update, context: CallbackContext):
