@@ -204,7 +204,7 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Вибрати групу' in update.message.text:
         message = 'Вибери групу'
-        buttons = [[KeyboardButton('ФІ-12')]]
+        buttons = [[KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')]]
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Понеділок (т. 1)' in update.message.text:
 
