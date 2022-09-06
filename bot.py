@@ -112,15 +112,6 @@ def parse(result_collection, id):
                 if 'Кохтич' in messages[6][i]:
                     messages[6][i] = messages[6][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
                     
-        if r['time'] == '20:15':
-            try:
-                messages[7].append(f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
-            except KeyError:
-                messages.update({7 : [f'6\uFE0F\u20E3 пара (18:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
-            for i in range(len(messages[7])):
-                if 'Кохтич' in messages[7][i]:
-                    messages[7][i] = messages[7][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
-                    
     
     messages = dict(sorted(messages.items()))
     for i in messages:
@@ -189,7 +180,7 @@ def suggest_command(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text='Відгук відправлено')
     
 def addtochannel_command(update: Update, context: CallbackContext):
-    message = 'Для того щоб додати бота до каналу напиши мені повідомлення у виглядіЖ\n \'Додати до каналу "тег або id каналу" "номер группу" \' без лапок(")'
+    message = 'Для того щоб додати бота до каналу напиши мені повідомлення у виглядіЖ\n \'Додати до каналу {тег або id каналу} {номер групи} \' без лапок({})\n групу писати у вигляді : fi-75 '
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
         
     
@@ -350,15 +341,6 @@ def notification(context: CallbackContext):
         if message != 'Відпочивай':
             context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
             
-def c(context: CallbackContext):
-
-    
-    us = users.find()
-    for user in us:
-        if user['group'] == 'test':
-            r = collection.find({'week':'1',  'groups':'test'})
-            message = parse(r, user['chat_id'])
-            context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
         
 def morning_notification(context: CallbackContext):
     today = datetime.date.today()
@@ -387,7 +369,6 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,5))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,25))
-    job_daily = j.run_daily(c, days=(0, 1, 2, 3, 4, 5), time=datetime.time(17,10))
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(4,59))
     
     
