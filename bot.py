@@ -147,7 +147,7 @@ def restart_command(update: Update, context: CallbackContext):
 def end_command(update: Update, context: CallbackContext):
     message = 'Допобачення'
     buttons = []
-    context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
     
     
 def select_command(update: Update, context: CallbackContext):
