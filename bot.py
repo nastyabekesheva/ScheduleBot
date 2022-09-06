@@ -292,6 +292,9 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.HTML)
     subjects = get_elected_subjects(update.effective_chat.id)
     
+    if 'start channel' in update.message.text:
+        start_command(Update, CallbackContext)
+    
     for i in range(len(subjects)):
         if str(i) == update.message.text:
         
