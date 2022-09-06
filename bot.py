@@ -51,7 +51,7 @@ def parse(result_collection, id):
     for r in new_result:
         if r['time'] == '08:30':
             try:
-                messages[1].append(f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
+                messages[1].append(f'\uE21C пара (08:30)\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n')
             except KeyError:
                 messages.update({1 : [f'Пара №1\n{r["name"]}\n{r["teacher"]}\nПосилання:{r["link"]}\n\n']})
                 
@@ -265,7 +265,7 @@ def notification(context: CallbackContext):
     
     us = users.find()
     for user in us:
-        result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
+        result = collection.find({'week':week, 'day':weekdays[day],  'groups':user[0]['group']})
         temp = []
         for i in result:
             if i['time']==t.strftime('%H:%M'):
