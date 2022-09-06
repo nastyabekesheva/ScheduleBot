@@ -18,6 +18,7 @@ cluster = MongoClient('mongodb+srv://nastyabekesheva:tkyrpl190@scheduledb.xtrt8v
 db = cluster['ScheduleDB']
 collection = db['schedule']
 users = db['users']
+suggestions = db['suggestions']
 
 start_date = datetime.date(2022, 9, 5)
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -130,6 +131,11 @@ def unselect_command(update: Update, context: CallbackContext):
     #users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[]}})
     buttons.append([KeyboardButton('Вибрати тиждень')])
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
+    
+def suggest_command(update: Update, context: CallbackContext):
+    suggestions.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'message':update.message.text})
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Відгук відправлено')
+    
     
 def message_handler(update: Update, context: CallbackContext):
     if 'ФІ-12' in update.message.text:
