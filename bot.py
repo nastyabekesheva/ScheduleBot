@@ -347,8 +347,8 @@ def c(context: CallbackContext):
     us = users.find()
     for user in us:
         if user['group'] == 'test':
-            collection.find({'week':'1',  'groups':'test'})
-            message = parse(temp, user['chat_id'])
+            r = collection.find({'week':'1',  'groups':'test'})
+            message = parse(r, user['chat_id'])
             context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
         
 def morning_notification(context: CallbackContext):
@@ -377,7 +377,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(11,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,5))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(15,25))
-    job_daily = j.run_daily(c, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,45))
+    job_daily = j.run_daily(c, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,47))
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(4,59))
     
     
