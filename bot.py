@@ -127,7 +127,8 @@ def unselect_command(update: Update, context: CallbackContext):
         if subjects_names[i] in user[0]['elected']:
             message += f'{i} - {subjects_names[i]}\n'
             buttons.append([KeyboardButton(f'{i}')])
-    users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[]}})
+    #users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[]}})
+    buttons.append([KeyboardButton('Вибрати тиждень')])
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
 def message_handler(update: Update, context: CallbackContext):
@@ -237,7 +238,10 @@ def message_handler(update: Update, context: CallbackContext):
     subjects = get_elected_subjects(update.effective_chat.id)
     for i in range(len(subjects)):
         if str(i) == update.message.text:
-            users.update_one({'chat_id':update.effective_chat.id}, {'$push':{'elected':subjects[i]}})
+            if subjects[i] not in users.find({'chat_id':update.effective_chat.id})[0]['elected']:
+                users.update_one({'chat_id':update.effective_chat.id}, {'$push':{'elected':subjects[i]}})
+            else:
+                users.update_one({'chat_id':update.effective_chat.id}, {'$pull':{'elected':subjects[i]}})
         
 def notification(context: CallbackContext):
     today = datetime.date.today()
