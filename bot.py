@@ -110,15 +110,25 @@ def select_command(update: Update, context: CallbackContext):
     message = 'Вибери предмет за номером:\n'
     subjects_names = get_elected_subjects(update.effective_chat.id)
     buttons = []
+    user = users.find({'chat_id':update.effective_chat.id})
     for i in range(len(subjects_names)):
-        message += f'{i} - {subjects_names[i]}\n'
-        buttons.append([KeyboardButton(f'{i}')])
+        if subjects_names[i] not in user[0]['elected']:
+            message += f'{i} - {subjects_names[i]}\n'
+            buttons.append([KeyboardButton(f'{i}')])
     buttons.append([KeyboardButton('Вибрати тиждень')])
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
 def unselect_command(update: Update, context: CallbackContext):
+    message = 'Вибери предмет за номером:\n'
+    subjects_names = get_elected_subjects(update.effective_chat.id)
+    buttons = []
+    user = users.find({'chat_id':update.effective_chat.id})
+    for i in range(len(subjects_names)):
+        if subjects_names[i] in user[0]['elected']:
+            message += f'{i} - {subjects_names[i]}\n'
+            buttons.append([KeyboardButton(f'{i}')])
     users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[]}})
-    context.bot.send_message(chat_id=update.effective_chat.id, text='Вибіркові предмети видалено')
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
 def message_handler(update: Update, context: CallbackContext):
     if 'ФІ-12' in update.message.text:
