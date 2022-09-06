@@ -123,7 +123,7 @@ def parse(result_collection, id):
 
 def get_elected_subjects(id):
     user = users.find({'chat_id':id})
-    group = user[0]['group']
+    group = user['group']
     subjects = collection.find({'groups':group, 'elective':True})
     subjects_names = []
     for subject in subjects:
