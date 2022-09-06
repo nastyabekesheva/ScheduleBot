@@ -144,6 +144,11 @@ def restart_command(update: Update, context: CallbackContext):
     users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[], 'group':''}})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
+def end_command(update: Update, context: CallbackContext):
+    message = 'Допобачення'
+    buttons = []
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
+    
     
 def select_command(update: Update, context: CallbackContext):
     message = 'Вибери предмет за номером:\n'
@@ -348,6 +353,7 @@ def main():
     dispatcher.add_handler(CommandHandler('select', select_command))
     dispatcher.add_handler(CommandHandler('unselect', unselect_command))
     dispatcher.add_handler(CommandHandler('suggest', suggest_command))
+    dispatcher.add_handler(CommandHandler('end', end_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
     updater.start_polling()
     updater.idle()
