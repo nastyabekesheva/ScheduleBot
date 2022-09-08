@@ -345,7 +345,6 @@ def notification(context: CallbackContext):
         message = parse(temp, user['chat_id'])
         if message != 'Відпочивай':
             context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
-    context.bot.send_message(chat_id='-1001447932334', text='test')
             
         
 def morning_notification(context: CallbackContext):
