@@ -306,7 +306,7 @@ def message_handler(update: Update, context: CallbackContext):
         try:
             id = message[3]
             group = message[4]
-            users.insert_one({'chat_id':id, 'group':group})
+            users.insert_one({'chat_id':id, 'group':group, 'elected':[]})
             context.bot.send_message(chat_id=update.effective_chat.id, text='Успіх!')
         except KeyError:
             context.bot.send_message(chat_id=update.effective_chat.id, text='Невірний формат повідомлення', parse_mode=ParseMode.HTML)
