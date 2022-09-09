@@ -56,7 +56,6 @@ def parse(result_collection, id):
                     new_result.append(r)
     
     new_result = [i for n, i in enumerate(new_result) if i not in new_result[n + 1:]]
-    print(new_result)
         
     messages = {}
     
@@ -341,6 +340,10 @@ def notification(context: CallbackContext):
     
     us = users.find()
     for user in us:
+        if user['chat_id'] == '@fi12schedule':
+            print('12')
+        elif user['chat_id'] == '@fi03links':
+            print('03')
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
         temp = []
         for i in result:
@@ -348,7 +351,10 @@ def notification(context: CallbackContext):
                 temp.append(i)
         message = parse(temp, user['chat_id'])
         if message != 'Відпочивай':
-            context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
+            try:
+                context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
+            except Exception as e:
+                print(e)
             
         
 def morning_notification(context: CallbackContext):
@@ -367,7 +373,10 @@ def morning_notification(context: CallbackContext):
         print(result)
         message = parse(result, user['chat_id'])
         if message != 'Відпочивай':
-            context.bot.send_message(chat_id=user['chat_id'], text=bold(start_message)+message, parse_mode=ParseMode.HTML)
+            try:
+                context.bot.send_message(chat_id=user['chat_id'], text=bold(start_message)+message, parse_mode=ParseMode.HTML)
+            except Exception as e:
+                print(e)
     
 
 def main():
