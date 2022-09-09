@@ -55,7 +55,7 @@ def parse(result_collection, id):
                 else:
                     new_result.append(r)
     
-    new_result = [dict(t) for t in {tuple(d.items()) for d in new_result}]
+    new_result = [i for n, i in enumerate(new_result) if i not in new_result[n + 1:]]
     print(new_result)
         
     messages = {}
