@@ -54,9 +54,10 @@ def parse(result_collection, id):
                         new_result.append(r)
                 else:
                     new_result.append(r)
-    print(new_result)
-    new_result = list(set(new_result))
     
+    new_result = [dict(t) for t in {tuple(d.items()) for d in new_result}]
+    print(new_result)
+        
     messages = {}
     
     message = ''
