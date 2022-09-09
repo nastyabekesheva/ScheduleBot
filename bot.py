@@ -355,6 +355,10 @@ def notification(context: CallbackContext):
                 context.bot.send_message(chat_id=user['chat_id'], text=message, parse_mode=ParseMode.HTML)
             except Exception as e:
                 print(e)
+            except TelegramError as te:
+                print(te)
+            except Unauthorized as ue:
+                print(ue)
             
         
 def morning_notification(context: CallbackContext):
@@ -377,6 +381,10 @@ def morning_notification(context: CallbackContext):
                 context.bot.send_message(chat_id=user['chat_id'], text=bold(start_message)+message, parse_mode=ParseMode.HTML)
             except Exception as e:
                 print(e)
+            except TelegramError as te:
+                print(te)
+            except Unauthorized as ue:
+                print(ue)
     
 
 def main():
