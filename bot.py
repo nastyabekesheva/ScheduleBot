@@ -54,6 +54,7 @@ def parse(result_collection, id):
                         new_result.append(r)
                 else:
                     new_result.append(r)
+    print()
     new_result = list(set(new_result))
     
     messages = {}
