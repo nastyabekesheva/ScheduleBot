@@ -137,13 +137,13 @@ def get_elected_subjects(id):
 
 def start_command(update: Update, context: CallbackContext):
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
-    buttons = [[KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')]]
+    buttons = [[KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')], [KeyboardButton('ФІ-03')]]
     users.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'elected':[], 'group':''})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
 
 def restart_command(update: Update, context: CallbackContext):
     message = 'Вибери групу!'
-    buttons = [[KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')]]
+    buttons = [[KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')], [KeyboardButton('ФІ-03')]]
     users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[], 'group':''}})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
@@ -192,17 +192,22 @@ def message_handler(update: Update, context: CallbackContext):
     if 'ФІ-12' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
-        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-12'}})
+        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-12'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'ФІ-03' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
-        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-03'}})
+        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-03'}})
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
+    if 'ФІ-02' in update.message.text:
+        message = 'Вибери тиждень'
+        buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
+        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-03'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'ФІ-11' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
-        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-11'}})
+        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-11'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Тиждень №1' in update.message.text:
         message = 'Вибери день'
@@ -216,7 +221,7 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Вибрати групу' in update.message.text:
         message = 'Вибери групу'
-        buttons = [[KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')]]
+        buttons = [[KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-03')],  [KeyboardButton('ФІ-03')]]
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Понеділок (т. 1)' in update.message.text:
 
