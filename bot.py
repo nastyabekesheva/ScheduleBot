@@ -192,22 +192,22 @@ def message_handler(update: Update, context: CallbackContext):
     if 'ФІ-12' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
-        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-12'}})
+        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-12'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'ФІ-03' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
-        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-03'}})
+        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-03'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'ФІ-02' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
-        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-02'}})
+        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-02'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'ФІ-11' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
-        users.update_many({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-11'}})
+        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-11'}})
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Тиждень №1' in update.message.text:
         message = 'Вибери день'
@@ -345,10 +345,6 @@ def notification(context: CallbackContext):
     
     us = users.find()
     for user in us:
-        if user['chat_id'] == '@fi12schedule':
-            print('12')
-        elif user['chat_id'] == '@fi03links':
-            print('03')
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
         temp = []
         for i in result:
