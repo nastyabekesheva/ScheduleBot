@@ -185,8 +185,13 @@ def suggest_command(update: Update, context: CallbackContext):
 def addtochannel_command(update: Update, context: CallbackContext):
     message = 'Для того щоб додати бота до каналу напиши мені повідомлення у виглядіЖ\n \'Додати до каналу {тег або id каналу} {номер групи} \' без лапок({})\n групу писати у вигляді : fi-75 '
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
-        
     
+def notify_command(update: Update, context: CallbackContext):
+    users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'notify':True}})
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Сповіщення увімкнено!', reply_markup = ReplyKeyboardMarkup([]))
+def stop_notify_command(update: Update, context: CallbackContext):
+    users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'notify':False}})
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Сповіщення вимкнено!', reply_markup = ReplyKeyboardMarkup([]))
     
 def message_handler(update: Update, context: CallbackContext):
     if 'ФІ-12' in update.message.text:
@@ -343,7 +348,7 @@ def notification(context: CallbackContext):
     j = t.strftime('%H:%M')
 
     
-    us = users.find()
+    us = users.find({'notify':True})
     for user in us:
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
         temp = []
@@ -372,10 +377,9 @@ def morning_notification(context: CallbackContext):
     else:
         week = '2'
     day = today.weekday()
-    us = users.find()
+    us = users.find({'notify':True})
     for user in us:
         result = collection.find({'week':week, 'day':weekdays[day],  'groups':user['group']})
-        print(result)
         message = parse(result, user['chat_id'])
         if message != 'Відпочивай':
             try:
@@ -406,6 +410,8 @@ def main():
     dispatcher.add_handler(CommandHandler('suggest', suggest_command))
     dispatcher.add_handler(CommandHandler('end', end_command))
     dispatcher.add_handler(CommandHandler('addtochannel', addtochannel_command))
+    dispatcher.add_handler(CommandHandler('notify', notify_command))
+    dispatcher.add_handler(CommandHandler('stopnotify', stop_notify_command))
     dispatcher.add_handler(MessageHandler(Filters.text, message_handler))
     updater.start_polling()
     updater.idle()
