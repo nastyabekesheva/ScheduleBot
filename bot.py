@@ -198,7 +198,7 @@ def message_handler(update: Update, context: CallbackContext):
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
         users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-23'}})
-        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))        
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'ФІ-12' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
@@ -423,4 +423,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
 
