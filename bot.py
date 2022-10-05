@@ -61,6 +61,7 @@ def parse(result_collection, id):
     
     message = ''
     for r in new_result:
+        print(r)
         if r['time'] == '08:30':
             try:
                 messages[1].append(f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f4dc {r["type"]} \n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
@@ -138,7 +139,7 @@ def get_elected_subjects(id):
 def start_command(update: Update, context: CallbackContext):
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
     buttons = [[KeyboardButton('ФІ-23')], [KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-02')], [KeyboardButton('ФІ-03')]]
-    users.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'elected':[], 'group':''})
+    users.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'elected':[], 'group':'', 'notify':True})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
 
 def restart_command(update: Update, context: CallbackContext):
