@@ -130,13 +130,13 @@ def get_elected_subjects(id):
 
 def start_command(update: Update, context: CallbackContext):
     message = 'Привіт. Я бот з розкладом твоєї групи.\nДля того щоб продовжити обери номер своєї групи!'
-    buttons = [[KeyboardButton('ФІ-23')], [KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-02')], [KeyboardButton('ФІ-03')]]
+    buttons = [[KeyboardButton('ФІ-21')], [KeyboardButton('ФІ-23')], [KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-02')], [KeyboardButton('ФІ-03')]]
     users.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'elected':[], 'group':'', 'notify':True})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
 
 def restart_command(update: Update, context: CallbackContext):
     message = 'Вибери групу!'
-    buttons = [[KeyboardButton('ФІ-23')], [KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-02')], [KeyboardButton('ФІ-03')]]
+    buttons = [[KeyboardButton('ФІ-21')], [KeyboardButton('ФІ-23')], [KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-02')], [KeyboardButton('ФІ-03')]]
     users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[], 'group':''}})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
@@ -167,7 +167,6 @@ def unselect_command(update: Update, context: CallbackContext):
         if subjects_names[i] in user[0]['elected']:
             message += f'{i} - {subjects_names[i]}\n'
             buttons.append([KeyboardButton(f'{i}')])
-    #users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[]}})
     buttons.append([KeyboardButton('Вибрати тиждень')])
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons))
     
@@ -187,6 +186,11 @@ def stop_notify_command(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text='Сповіщення вимкнено!', reply_markup = ReplyKeyboardMarkup([]))
     
 def message_handler(update: Update, context: CallbackContext):
+    if 'ФІ-21' in update.message.text:
+        message = 'Вибери тиждень'
+        buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
+        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'group':'fi-21'}})
+        context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'ФІ-23' in update.message.text:
         message = 'Вибери тиждень'
         buttons = [[KeyboardButton('Тиждень №1')], [KeyboardButton('Тиждень №2')], [KeyboardButton('Вибрати групу')]]
@@ -224,7 +228,7 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Вибрати групу' in update.message.text:
         message = 'Вибери групу'
-        buttons = [[KeyboardButton('ФІ-23')], [KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-02')],  [KeyboardButton('ФІ-03')]]
+        buttons = [[KeyboardButton('ФІ-21')], [KeyboardButton('ФІ-23')], [KeyboardButton('ФІ-11')], [KeyboardButton('ФІ-12')], [KeyboardButton('ФІ-02')],  [KeyboardButton('ФІ-03')]]
         context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = ReplyKeyboardMarkup(buttons, one_time_keyboard=True))
     if 'Понеділок (т. 1)' in update.message.text:
 
