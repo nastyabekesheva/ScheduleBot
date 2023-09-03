@@ -20,7 +20,7 @@ suggestions = db['suggestions']
 start_date = datetime.date(2022, 9, 5)
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-defaults = Defaults(parse_mode=HTML, tzinfo=pytz.timezone('Europe/Kyiv'))
+defaults = Defaults(tzinfo=pytz.timezone('Europe/Kyiv'))
 updater = Updater(token='5651742670:AAE3IU3a99mn92IM_6Xz-hMPIfLSSgRI1Fc', use_context=True, defaults=defaults)
 
 dispatcher = updater.dispatcher
