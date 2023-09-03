@@ -4,14 +4,17 @@ import pymongo
 from pymongo import MongoClient
 from typing import Union, List
 import pytz
+import os
 
 import datetime
 import logging
 
 with open('db_access.txt') as f:
     db_access = f.read()
+    
+mongo_url = os.environ.get("MONGO_URL")
 
-cluster = MongoClient(db_access)
+cluster = MongoClient(mongo_url)
 db = cluster['ScheduleDB']
 collection = db['schedule']
 users = db['users']
