@@ -160,6 +160,8 @@ def start_command(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=4))
     if users.find({'chat_id':update.effective_chat.id}) != '':
         users.insert_one({'chat_id':update.effective_chat.id, 'username':update.effective_chat.username, 'elected':[], 'group':'', 'notify':True})
+    else:
+        users.update_one({'chat_id':update.effective_chat.id}, {'$set':{'elected':[], 'group':''}})
     context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup = reply_markup)
 
 def restart_command(update: Update, context: CallbackContext):
