@@ -9,9 +9,6 @@ import os
 import datetime
 import logging
 
-with open('db_access.txt') as f:
-    db_access = f.read()
-
 m = os.environ['MONGO_URL']
 cluster = MongoClient(m)
 db = cluster['ScheduleDB']
