@@ -67,7 +67,7 @@ def parse(result_collection, id):
                 if 'Кохтич' in messages[1][i]:
                     messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
                     
-        if r['time'] == '13:32':
+        if r['time'] == '13:40':
             try:
                 messages[1].append(f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f4dc {r["type"]} \n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
             except KeyError:
@@ -666,7 +666,7 @@ def message_handler(update: Update, context: CallbackContext):
                 users.update_one({'chat_id':update.effective_chat.id}, {'$pull':{'elected':subjects[i]}})
                 
 def notification(context: CallbackContext):
-    today = datetime.date.today()
+    today = datetime.date.today(pytz.timezone('Europe/Kyiv'))
     delta = (today - start_date).days
     week = '0'
     if int(delta / 7) % 2 == 0:
@@ -674,7 +674,7 @@ def notification(context: CallbackContext):
     else:
         week = '2'
     day = today.weekday()
-    t = datetime.datetime.now() + datetime.timedelta(minutes=5)
+    t = datetime.datetime.now(pytz.timezone('Europe/Kyiv')) + datetime.timedelta(minutes=5)
     t = t.time()
     j = t.strftime('%H:%M')
     print(j)
@@ -733,7 +733,7 @@ def main():
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(14,10))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(16,5))
     job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(18,25))
-    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,32))
+    job_daily = j.run_daily(notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(13,40))
     job_daily = j.run_daily(morning_notification, days=(0, 1, 2, 3, 4, 5), time=datetime.time(7,59))
 
 
