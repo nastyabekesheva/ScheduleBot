@@ -4,5 +4,5 @@ services:
     build: .
     container_name: nastya_bot
     restart: unless-stopped
-  env:
-    - .env
+    env_file:
+      - .env
