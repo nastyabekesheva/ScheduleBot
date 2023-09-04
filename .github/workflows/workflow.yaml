@@ -29,6 +29,8 @@ jobs:
         run: docker-compose -f docker-compose.yml build --force-rm
       
       - name: "Recreating services..."
+        env:
+         MONGO_URL: ${{ secrets.MONGO_URL }}
         run: docker-compose -f docker-compose.yml up -d --remove-orphans 
         
       - name: "Removing unused images after build and recreate..."
