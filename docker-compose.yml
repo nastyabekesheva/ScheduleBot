@@ -4,5 +4,5 @@ services:
     build: .
     container_name: nastya_bot
     restart: unless-stopped
-    env_file:
-      - .env
+  env:
+    MONGO_URL: ${MONGO_URL}
