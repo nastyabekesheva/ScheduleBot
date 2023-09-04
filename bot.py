@@ -12,7 +12,8 @@ import logging
 with open('db_access.txt') as f:
     db_access = f.read()
 
-cluster = MongoClient(os.environ['MONGO_URL'])
+m = os.environ['MONGO_URL']
+cluster = MongoClient(m)
 db = cluster['ScheduleDB']
 collection = db['schedule']
 users = db['users']
