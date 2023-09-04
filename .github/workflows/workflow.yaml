@@ -33,5 +33,9 @@ jobs:
         
       - name: "Removing unused images after build and recreate..."
         run: docker image prune -f
-
+      
+      - name: "Using secrets"
+        run: python -c 'import os;print(os.environ)'
+        env:
+          MONGO_URL: ${{ secrets.MONGO_URL }}}
 
