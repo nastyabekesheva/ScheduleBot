@@ -66,16 +66,6 @@ def parse(result_collection, id):
             for i in range(len(messages[1])):
                 if 'Кохтич' in messages[1][i]:
                     messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
-                    
-        if r['time'] == '14:00':
-            try:
-                messages[1].append(f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f4dc {r["type"]} \n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n')
-            except KeyError:
-                messages.update({1 : [f'1\uFE0F\u20E3 пара (08:30)\n{r["name"]}\n\U0001f4dc {r["type"]}\n\U0001f9d1\U0001f3fb\u200D\U0001f3eb {r["teacher"]}\nПосилання: <a href="{r["link"]}">тут</a>\n\n']})
-            for i in range(len(messages[1])):
-                if 'Кохтич' in messages[1][i]:
-                    messages[1][i] = messages[1][i].replace('\U0001f9d1\U0001f3fb\u200D\U0001f3eb', '\u267F')
-            print(messages)
                 
         if r['time'] == '10:25':
             try:
@@ -677,7 +667,6 @@ def notification(context: CallbackContext):
     t = datetime.datetime.now(pytz.timezone('Europe/Kyiv')) + datetime.timedelta(minutes=5)
     t = t.time()
     j = t.strftime('%H:%M')
-    context.bot.send_message(chat_id=440397285, text=t.strftime('%H:%M'), parse_mode=ParseMode.HTML)
 
     
     us = users.find({'notify':True})
@@ -686,8 +675,6 @@ def notification(context: CallbackContext):
         temp = []
         for i in result:
             if i['time']==t.strftime('%H:%M'):
-                print("I'm working")
-                print("I'm working")
                 temp.append(i)
         message = parse(temp, user['chat_id'])
         if message != 'Відпочивай':
