@@ -25,12 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: "Building new images..."
+        run: docker-compose -f docker-compose.yml build --force-rm
+      
       - name: "Copying env files"
         run: |
           echo "MONGO_URL = \"${{secrets.MONGO_URL}}\"" > .env
-
-      - name: "Building new images..."
-        run: docker-compose -f docker-compose.yml build --force-rm
       
       - name: "Recreating services..."
         run: docker-compose -f docker-compose.yml up -d --remove-orphans 
