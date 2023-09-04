@@ -664,7 +664,7 @@ def notification(context: CallbackContext):
     else:
         week = '2'
     day = today.weekday()
-    #t = datetime.datetime.now()+ datetime.timedelta(hours=3,minutes=5)
+    t = datetime.datetime.now() + datetime.timedelta(minutes=5)
     t = datetime.datetime.now()
     t = t.time()
     j = t.strftime('%H:%M')
