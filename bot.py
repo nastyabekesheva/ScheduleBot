@@ -4,6 +4,7 @@ import pymongo
 from pymongo import MongoClient
 from typing import Union, List
 import pytz
+import os
 
 import datetime
 import logging
@@ -11,7 +12,7 @@ import logging
 with open('db_access.txt') as f:
     db_access = f.read()
 
-cluster = MongoClient(db_access)
+cluster = MongoClient(os.environ['MONGO_URL'])
 db = cluster['ScheduleDB']
 collection = db['schedule']
 users = db['users']
