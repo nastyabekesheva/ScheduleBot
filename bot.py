@@ -9,9 +9,7 @@ import os
 import datetime
 import logging
 
-MONGO_URL = os.environ['MONGO_URL']
-TOKEN = os.environ['TOKEN']
-
+m = os.environ['MONGO_URL']
 cluster = MongoClient(m)
 db = cluster['ScheduleDB']
 collection = db['schedule']
@@ -22,7 +20,7 @@ start_date = datetime.date(2022, 9, 5)
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 defaults = Defaults(parse_mode=ParseMode.HTML, tzinfo=pytz.timezone('Europe/Kyiv'))
-updater = Updater(token=TOKEN, use_context=True, defaults=defaults)
+updater = Updater(token='5651742670:AAE3IU3a99mn92IM_6Xz-hMPIfLSSgRI1Fc', use_context=True, defaults=defaults)
 
 dispatcher = updater.dispatcher
 j = updater.job_queue
