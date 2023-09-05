@@ -12,7 +12,7 @@ import logging
 MONGO_URL = os.environ['MONGO_URL']
 TOKEN = os.environ['TOKEN']
 
-cluster = MongoClient(m)
+cluster = MongoClient(MONGO_URL)
 db = cluster['ScheduleDB']
 collection = db['schedule']
 users = db['users']
