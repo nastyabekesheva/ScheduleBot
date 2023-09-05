@@ -28,6 +28,7 @@ jobs:
       - name: "Copying env files"
         run: |
           echo "MONGO_URL = \"${{secrets.MONGO_URL}}\"" > .env
+          echo "TOKEN = \"${{secrets.TOKEN}}\"" > .env
       - name: "Building new images..."
         run: docker-compose -f docker-compose.yml build --force-rm
 
@@ -41,3 +42,4 @@ jobs:
         run: python -c 'import os;print(os.environ)'
         env:
           MONGO_URL: ${{ secrets.MONGO_URL }}}
+          TOKEN: ${{ secrets.TOKEN }}}
